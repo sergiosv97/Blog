@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">Editar publicación</div>
                 @if (Session::has('message'))
+
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                          {{Session::get('message')}}
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -17,9 +18,10 @@
 
                 <div class="col-xl-8 order-xl-2 mb-5 mb-xl-0">
                     <div class="card-body m-4">
-                        <form action="{{route('posts.update', $post->id)}}" method="post" class="m-2" enctype="multipart/form-data">
+                        <form action="{{route('posts.update', $post->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            
                                 <div class="form-group">
                                     <label class="form-control-label" for="title">Categoria</label>
 
@@ -28,12 +30,11 @@
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
-    
                                     </select>
                                 </div>
     
                                 <div class="form-group">
-                                    <label class="form-control-label">Título</label>
+                                    <label class="form-control-label" for="title">Título</label>
                                     <input type="text" id="title" class="form-control form-control-alternative" placeholder="" value="{{$post->title}}"
                                     name="title">
     
@@ -50,6 +51,8 @@
                                     <strong class="text-danger">{{$errors->first('body')}}</strong>
                                     @endif
                                 </div>
+
+                                <img src="{{$post->image}}" class="img-fluid" width="200" alt=""> 
     
                                 <div class="form-group">
                                     <label class="form-control-label" for="competencias">Imagen</label>
@@ -62,14 +65,13 @@
                                     
                                 </div>
                            
-                            <button type="submit" class="btn btn-primary my-4">Crear</button>
+                            <button type="submit" class="btn btn-primary my-4">Actualizar</button>
                         </form>
                     </div>
                 </div>
                     
                 </div>    
-            </div>
-        </div>
     </div>
 </div>
+ 
 @endsection

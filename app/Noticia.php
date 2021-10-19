@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Noticia extends Model
 {
@@ -11,7 +12,7 @@ class Noticia extends Model
 
     public function user(){
 
-        return $this->belongsTo(App::User);
+        return $this->belongsTo(User::class);
     }
     
 

@@ -72,7 +72,7 @@ class PostController extends Controller
             $post->fill(['image' => asset($nombre)])->save();
         }
 
-        Session::flash('message','Publicacion creada correctamente');
+        Session::flash('message','Publicación creada correctamente');
         return redirect()->route('posts.index');
     }
 
@@ -125,7 +125,7 @@ class PostController extends Controller
 
         $this->validate($request,$rules,$messages);
 
-        $post = new Post($request->all());
+        $post = Post::find($id);
         $post->slug = Str::slug($request->title);
         $post->update($request->all());
 
@@ -134,7 +134,7 @@ class PostController extends Controller
             $post->fill(['image' => asset($nombre)])->save();
         }
 
-        Session::flash('message','Publicacion actualizada correctamente');
+        Session::flash('message','Publicación actualizada correctamente');
         return redirect()->route('posts.index');
     
     }
@@ -147,6 +147,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        Session::flash('message','Publicación eliminada correctamente');
+        return redirect()->route('posts.index');
     }
 }

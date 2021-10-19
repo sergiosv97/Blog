@@ -19,7 +19,7 @@ class CreateNoticiasTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('titulo');
             $table->longText('texto');
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }

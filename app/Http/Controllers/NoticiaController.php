@@ -120,7 +120,7 @@ class NoticiaController extends Controller
 
         $this->validate($request,$rules,$messages);
 
-        $noticia = new Noticia($request->all());
+        $noticia = Noticia::find($id);
         $noticia->update($request->all());
 
         if ($request->file('imagen')) {
@@ -140,6 +140,11 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
+        $noticia = Noticia::find($id);
         
+        $noticia ->delete();
+
+        Session::flash('message','Noticia eliminada correctamente');
+        return redirect()->route('noticias.index');
     }
 }

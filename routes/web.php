@@ -27,3 +27,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('salarios', 'SalarioController');
     Route::resource('noticias', 'NoticiaController');
 });
+
+//rutas frontend
+Route::get('/','FrontController@index');
+Route::get('post/{slug}','FrontController@post');
+
+Route::get('noticia/{titulo}','FrontController@noticia');
+
