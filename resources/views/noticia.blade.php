@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h2 class="card-title d-flex justify-content-center m-2">{{$noticia->titulo}}</h2>
+                <p class="card-title d-flex justify-content-left m-2">{{$noticia->category->name}}</p>
+                <h1 class="card-title d-flex justify-content-center m-2">{{$noticia->titulo}}</h1>
                 <hr>
                 <img src="{{$noticia->imagen}}" class="card-img-top img-fluid" alt=""> 
                 <div class="card-body">

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 use App\User;
 use Auth;
-use App\Noticia;
 use Log;
+Use App\Category;
 
-class NoticiasController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,30 +17,26 @@ class NoticiasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    { 
-        // 1-hacer consulta en caso de que el request traiga order
-            // $id = noticia::orderby('created_at', 'DESC')
-            // if (isset($request->$id))
-            // return $id
-            
+    {
         $order = $request->get('order');
-        Log::info($order);
         if(isset($order)){
-            $query = Noticia::orderBy('created_at', $order);
+            $query = Post::orderBy('created_at', $order);
         }
-        // 2-hacer consulta en caso de que el request traiga id en el caso de que no tenga traer todo
-            // return Noticia::where('user_id', $id) consulta para traer por id de user
-            // return Noticia::orderBy('created_at', 'DESC') si no pide por id, traer todas las noticias
+
         $id = $request->get('user_id');
         if(isset($id)){
-            $query = $query->where('user_id', $id);
+            $query = $query->where('user_id',$id);
         }
 
-        if(!isset($order, $id )){
-            return Noticia::all();
+        $category = $request->get('category_id');
+        if(isset($category)){
+            $query = $query->where('category_id',$category);
         }
 
-        // 3-ejecutar get
+        if(!isset($order, $id , $category)){
+            return Post::all();
+        }
+
         return $query->get();
     }
 
@@ -72,8 +69,7 @@ class NoticiasController extends Controller
      */
     public function show($id)
     {
-        
-        return Noticia::find($id);
+        return Post::find($id);
     }
 
     /**

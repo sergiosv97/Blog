@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Session;
 use Redirect;
 use App\Noticia;
+use App\Category;
 
 class NoticiaController extends Controller
 {
@@ -32,7 +33,8 @@ class NoticiaController extends Controller
     public function create()
     {
         $user = User::find(Auth::User()->id);
-        return view('noticias.create',compact('user'));
+        $categories = Category::all();
+        return view('noticias.create',compact('categories','user'));
     }
 
     /**

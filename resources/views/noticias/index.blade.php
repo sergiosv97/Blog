@@ -16,6 +16,7 @@
                         <tr>
                         <th scope="col">IdNoticia</th>
                         <th scope="col">Titulo</th>
+                        <th scope="col">Categoría</th>
                         <th scope="col">Texto</th>
                         <th scope="col">Imagen</th>
                         <th scope="col">Acciones</th>
@@ -26,6 +27,7 @@
                         <tr>
                         <th scope="row">{{$noticia->id}}</th>
                         <td>{{$noticia->titulo}}</td>
+                        <td>{{$noticia->category->name}}</td>
                         <td>{{$noticia->texto}}</td>
                         <td><img src="{{$noticia->imagen}}" width="40" height="40" class="img-fluid"></td>
                         <td class="d-flex"><a href="{{route('noticias.edit', $noticia->id)}}" class="btn btn-success mr-2">Editar</a>

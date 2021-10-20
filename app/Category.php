@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Post;
+use App\Noticia;
 
 
 class Category extends Model
@@ -18,5 +19,10 @@ class Category extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function noticias()
+    {
+        return $this->hasMany(Noticia::class);
     }
 }
